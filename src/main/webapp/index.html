@@ -1,0 +1,150 @@
+<!DOCTYPE html >
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>灵魂贰婶</title>
+<script type="text/javascript"
+	src="./js/jquery-3.2.1.js"></script>
+<link rel="stylesheet" type="text/css" href="./css/index.css" />
+</head>
+<body>
+	<h1>灵魂贰婶-工作室</h1>
+	<h3 class="massage"></h3>
+	<div id="media" style="background: black;">
+		<!-- <video style="visibility: hidden;" id="video" width="534" height="400" src=""></video> -->
+		<video id="video" width="534" height="400" src=""></video>
+		<canvas id="canvas"  style="visibility: hidden;" width="534px" height="400px"></canvas>
+		<img width="534px" height="400px" id="myimage" src="">
+	</div>
+
+	<div>
+		<input id="input" maxlength="11"
+			onkeyup="value=value.replace(/[^\d]/g,'')" type="text" value=""
+			placeholder="请输入您的电话号码" />
+		<div id="login">登陆</div>
+		<div id="register">注册</div>
+	</div>
+	<script type="text/javascript">
+		var video = document.getElementById("video");
+		var canvas = document.getElementById("canvas");
+		var context = canvas.getContext("2d");
+		/*获取摄像头对象*/
+		var getUserMedia = (navigator.getUserMedia
+				|| navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia);
+
+		getUserMedia.call(navigator, {
+			video : true,
+			audio : false
+		}, function(localMediaStream) {
+			video.src = window.URL.createObjectURL(localMediaStream);
+			video.onloadedmetadata = function(e) {
+				video.play();
+			}
+		}, function(e) {
+			console.log("获取头像失败")
+		});
+		
+		//获取当前路径
+		function getContextPath() {
+			var pathName = document.location.pathname;
+			var index = pathName.substr(1).indexOf("/");
+			var result = pathName.substr(0, index + 1);
+			return result;
+		};
+		
+		
+		//登陆
+		$("#login").click(function() {
+			//获取电话号码
+			var phone = $("#input").val();
+			if (null != phone && phone.length > 0) {
+				//从界面上截取图片
+				var imagebase64 = cutOut();
+				//将图片上传到服务器
+				var url =getContextPath()+"/user/userLogin";
+				upDate(phone,imagebase64,url,1);
+				$("#input").val("");
+			}else {
+				alert("请输入电话号码！！！");
+			}
+
+		});
+		//注册
+		$("#register").click(function() {
+			//获取电话号码
+			var phone = $("#input").val();
+			if (null != phone && phone.length > 0) {
+				//从界面上截取图片
+				var imagebase64 = cutOut();
+				//将图片上传到服务器
+				var url = getContextPath()+"/user/userRegister";
+				upDate(phone,imagebase64,url,2);
+				$("#input").val("");
+			}else {
+				alert("请输入电话号码！！！");
+			}
+		});
+
+		function cutOut() { //从屏幕上截取图片
+			context.drawImage(video, 0, 0, 534, 400);
+			var imgSrc = document.getElementById("canvas").toDataURL(
+					'image/jpeg');
+			var base64 = imgSrc.split("data:image/jpeg;base64,")[1];
+			if (null != base64 && base64.length > 0) {
+				return base64;
+			}
+			return null;
+		}
+
+		function upDate(phone,imagebase64, url,flag) { //将图片上传到服务器
+			if (null != imagebase64 && imagebase64.length > 0) {
+				switch (flag) {
+				case 1: //登陆
+					login(url,phone,imagebase64);
+					break;
+				case 2: //注册
+					register(url,phone,imagebase64);
+					break;
+				}
+				
+			}
+		}
+		//用户登陆
+		function login(url,phone,imagebase64) {
+			$.ajax({
+				url : url,
+				type : "post",
+				data : {
+					"phonenum" : phone,
+					"faceBase64" : imagebase64
+				},
+				success : function(result) {
+					var code = result.code;
+						if (100 == code) { //登陆成功
+							window.location.href=getContextPath()+"/page/welcome";
+						}else {
+							alert(result.extend.message);
+						}
+					}
+			});
+		}
+		//用户注册
+		function register(url,phone,imagebase64) {
+			$.ajax({
+				url : url,
+				type : "post",
+				data : {
+					"phonenum" : phone,
+					"faceBase64" : imagebase64
+				},
+				success : function(result) {
+					var code = result.code;
+					alert(result.extend.message);
+				}
+			});
+		}
+		
+		
+	</script>
+</body>
+</html>

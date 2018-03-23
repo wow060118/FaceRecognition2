@@ -1,0 +1,115 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+html, body {
+	width: 100%;
+	height: 100%;
+}
+
+body {
+	background: url("../img/bg.jpg") no-repeat;
+	background-size: cover;
+}
+
+h1 {
+	text-align: center;
+	color: black;
+	line-height: 50px;
+}
+
+h3 {
+	height: 20px;
+	line-height: 20px;
+	color: red;
+	text-align: center;
+}
+
+#media {
+	width: 534px;
+	height: 400px;
+	margin: 10px auto 0;
+	position: relative;
+	overflow: hidden;
+	position: relative;
+}
+
+#canvas {
+	position: absolute;
+	top: 0px;
+	border: 0;
+}
+
+#myimage {
+	position: absolute;
+	top: 0px;
+	z-index: 10;
+	border: 0px;
+}
+
+#login {
+	width: 200px;
+	height: 50px;
+	float:left;
+	line-height: 50px;
+	text-align: center;
+	color: #fff;
+	background: #ff8c4d; 
+	cursor: pointer;
+	border-radius: 40px 0 0 40px;
+	margin-left: 34.5%;
+}
+#register {
+	width: 200px;
+	height: 50px;
+	float:left;
+	line-height: 50px;
+	text-align: center;
+	color: #fff;
+	background: #2c87ee;
+	cursor: pointer;
+	border-radius: 0 40px 40px 0;
+}
+#login:hover {
+	background: #ff5a00; 
+}
+#register:hover  {
+   background: #b33f00; 
+ }
+#input {
+	display: block;
+	border: none;
+	outline: none;
+	line-height: 50px;
+	text-align: center;
+	color: #fff;
+	background: #0c0c0c;
+	cursor: pointer;
+	border-radius: 40px;
+	margin: 10px auto;
+	width: 400px;
+	height: 50px;
+	border: 0px;	
+	font-size: 20px;
+}
+
+input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
+	/* WebKit browsers */
+	color: #fff;
+}
+
+input:-moz-placeholder, textarea:-moz-placeholder {
+	/* Mozilla Firefox 4 to 18 */
+	color: #fff;
+}
+
+input::-moz-placeholder, textarea::-moz-placeholder {
+	/* Mozilla Firefox 19+ */
+	color: #fff;
+}
+
+input:-ms-input-placeholder, textarea:-ms-input-placeholder {
+	/* Internet Explorer 10+ */
+	color: #fff;
+}
