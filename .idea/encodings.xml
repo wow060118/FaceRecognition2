@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/client" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/reg" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/facerecognition/bean/UserFace.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/facerecognition/service/FaceDealService.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/facerecognition/service/RecognizerService.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/facerecognition/service/impl/RecognizerServiceImpl.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/facerecognition/service/impl/UserFaceServiceImpl.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/generatorConfig.xml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/opencv-341-l.jar" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/opencv-341_1.jar" charset="GBK" />
+  </component>
+</project>
